@@ -6,6 +6,7 @@ Now to serialises and deserialise JSON file
 """
 
 import json
+from os import path
 from models.base_model import BaseModel
 
 
@@ -23,6 +24,8 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
+
+
         """"Sets in __objects the obj with key <obj class name>.id"""
         self.__objects[obj.__class__.__name__ + '.' + str(obj)] = obj
 
@@ -33,11 +36,8 @@ class FileStorage:
 
     def reload(self):
         """deserialise the JSON file to __objects if the file exists"""
-        try:
-            with open(self.__file_path, 'r') as f:
+        if path.exists(self.__file_path):
+            with open(self.__file_path, mode='r', encoding='utf-8') as f:
                 dic = json.loads(f.read())
-                for value in dic.values():
-                    cls = value["__class__"]
-                    self.new(eval(cls)(**value))
-        except Exception:
-            pass
+                for k, v in dic.items():
+                    self.__objects[k] = eval(v["__class__"])(**v)

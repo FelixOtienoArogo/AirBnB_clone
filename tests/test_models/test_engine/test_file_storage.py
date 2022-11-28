@@ -22,14 +22,12 @@ class TestStorage(unittest.TestCase):
         """Test the function new"""
         storage = FileStorage()
         obj = storage.all()
+        pass
     def test_save(self):
         """Test the function save"""
         pass
     def test_reload(self):
         """Test the function reload"""
-        pass
-    def test___init__(self):
-        """Test the __init__(self, *args, **kwargs)"""
         pass
 
 if __name__ == '__main__':
