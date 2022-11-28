@@ -1,24 +1,27 @@
 #!usr/bin/python3
 """Put the file storage to the test"""
 
+from models.engine.file_storage import FileStorage
 import unittest
+import uuid
+import os
 
 class TestStorage(unittest.TestCase):
     """
     Unittest for the storage module
     """
-    def test___file_path(self):
-        """Test the file path"""
-        pass
-    def test___objects(self):
-        """Test the __objects"""
-        pass
     def test_all(self):
         """Test the function all"""
-        pass
+        storage = FileStorage()
+        obj = storage.all()
+        self.assertIsNotNone(obj)
+        self.assertEqual(type(obj), dict)
+        self.assertIs(obj, storage._FileStorage__objects)
+        
     def test_new(self):
         """Test the function new"""
-        pass
+        storage = FileStorage()
+        obj = storage.all()
     def test_save(self):
         """Test the function save"""
         pass
