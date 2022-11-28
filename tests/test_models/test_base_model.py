@@ -6,7 +6,7 @@ import os
 import re
 import uuid
 from time import sleep
-for datetime import datetime
+from datetime import datetime
 from models.base_model import BaseModel
 
 class TestEverything(unittest.TestCase):

@@ -5,6 +5,7 @@ This is the BaseModel to define all common methods for other classes
 
 from uuid import uuid4
 from datetime import datetime
+import models
 
 class BaseModel:
     """
@@ -23,6 +24,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
+            models.storage.new(self)
         else:
             for key, value in kwargs.items():
                 if key in ("updated_at", "created_at"):
@@ -43,6 +45,7 @@ class BaseModel:
         with the current datetime
         """
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def to_dict(self):
         """
