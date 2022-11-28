@@ -6,7 +6,6 @@ This is the BaseModel to define all common methods for other classes
 from uuid import uuid4
 from datetime import datetime
 
-
 class BaseModel:
     """
     We house all common attributes of other classes
@@ -19,6 +18,7 @@ class BaseModel:
             *args:list arguments
             **kwargs: dictionary arguments
         """
+        time_format = '%Y-%m-%dT%H:%M:%S.%f'
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = datetime.utcnow()
@@ -34,7 +34,7 @@ class BaseModel:
 
     def __str__(self):
         """This prints the details about the object"""
-        return "[{}] ({}) <{}>".format(self.__class__.__name__,
+        return "[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__)
 
     def save(self):
@@ -52,10 +52,16 @@ class BaseModel:
         key_value = {}
 
         for key, value in self.__dict__.items():
-            if key == "created_at" or key == "updated_at":
-                key_value[key] = value.isoformat()
-            else:
+            if key == "my_number" or key == "name":
                 key_value[key] = value
+        key_value["__class__"] = self.__class__.__name__
+        for key, value in self.__dict__.items():
+            if key == "updated_at" or key == "created_at":
+                key_value[key] = value.isoformat()
+            elif key == "id":
+                key_value[key] = value
+            elif key == "created_at":
+                key_value[key] = value.isoformat()
 
         key_value["__class__"] = self.__class__.__name__
         return key_value
