@@ -7,6 +7,7 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """
     We house all common attributes of other classes
@@ -37,7 +38,7 @@ class BaseModel:
     def __str__(self):
         """This prints the details about the object"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
-                                      self.id, self.__dict__)
+                                     self.id, self.__dict__)
 
     def save(self):
         """
