@@ -11,6 +11,23 @@ from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """This is just an example TestCase"""
+    @classmethod
+    def setUpCalss(cls):
+        """setup for the test"""
+        cls.base = BaseModel()
+        cls.base.name = "Eeeeeh"
+        cls.base.num = 20
+
+    @classmethod
+    def teardown(cls):
+        """at the end of the test this will tear it down"""
+        del cls.base
+    def tearDown(self):
+        """teardown"""
+        try:
+            os.remove("objects.json")
+        except Exception:
+            pass
 
     def test_save(self):
         """First test baby"""

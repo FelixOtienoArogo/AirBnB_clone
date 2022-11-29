@@ -5,6 +5,7 @@ A class that inherits form BaseModel
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """
     A User inherits from BaseModel
