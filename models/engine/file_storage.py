@@ -24,15 +24,16 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-
-
         """"Sets in __objects the obj with key <obj class name>.id"""
-        self.__objects[obj.__class__.__name__ + '.' + str(obj)] = obj
+        self.__objects[obj.__class__.__name__ + '.' + obj.id] = obj
 
     def save(self):
         """serialises __objects to the JSON file (path: __file_path)"""
-        with open(self.__file_path, 'w+') as f:
-            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
+        dic = {}
+        for k, v in self.__objects.items():
+            dic[k] = v.to_dict()
+        with open(self.__file_path, mode='w', encoding='utf-8') as f:
+            f.write(json.dumps(dic))
 
     def reload(self):
         """deserialise the JSON file to __objects if the file exists"""
