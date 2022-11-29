@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
         """
         command = self.parseline(arg)[0]
         if command is None:
-            print("** class name missin **")
+            print("** class name missing **")
         elif command not in self.allowed_classes:
             print("** class doesn't exist **")
         else:
@@ -123,8 +123,10 @@ class HBNBCommand(cmd.Cmd):
             inst_data = models.storage.all().get(key)
             if inst_data is None:
                 print('** no instance found **')
+            if args_size == 2:
+                print('** attribute name missing **')
             elif args_size == 3:
-                print('** valure missing **')
+                print('** value missing **')
             else:
                 args[3] = self.analyze_parameter_value(args[3])
                 setattr(inst_data, args[2], args[3])
