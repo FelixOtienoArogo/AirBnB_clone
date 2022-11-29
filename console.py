@@ -129,8 +129,11 @@ class HBNBCommand(cmd.Cmd):
                 print('** value missing **')
             else:
                 args[3] = self.analyze_parameter_value(args[3])
-                setattr(inst_data, args[2], args[3])
-                setattr(inst_data, 'updated_at', datetime.now())
+                try:
+                    setattr(inst_data, args[2], args[3])
+                    setattr(inst_data, 'updated_at', datetime.now())
+                except AttributeError:
+                    pass
                 models.storage.save()
 
     def analyze_parameter_value(self, value):
@@ -143,6 +146,7 @@ class HBNBCommand(cmd.Cmd):
             return int(value)
         elif value.replace('.', '', 1).isdigit():
             return float(value)
+
         return value
 
 
