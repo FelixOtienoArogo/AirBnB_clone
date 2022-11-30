@@ -24,8 +24,8 @@ class Place(BaseModel):
     amenity_ids: list of string - empty list: it will be 
     the list of Amenity.id later
     """
-    city_id = City.id
-    user_id = User.id
+    city_id = ""
+    user_id = ""
     name = ""
     description = ""
     number_rooms = 0
@@ -34,4 +34,4 @@ class Place(BaseModel):
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
-    amenity_ids = Amenity.id
+    amenity_ids = []

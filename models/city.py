@@ -13,5 +13,5 @@ class City(BaseModel):
     state_id:string-empty string, is the State.id
     name: string-empty string
     """
-    state_id = State.id
+    state_id = ""
     name = ""
