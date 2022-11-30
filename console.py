@@ -12,7 +12,7 @@ from models.city import City
 from models.place import Place
 from models.review import Review
 from models.state import State
-from models.user import Amenity
+from models.amenity import Amenity
 import re
 import shlex
 
