@@ -31,8 +31,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """First test baby"""
-        self.base.save()
-        self.assertNotEqual(self.base.created_at, self.base.updated_at)
+        base = BaseModel()
+        base.save()
+        self.assertNotEqual(base.created_at, base.updated_at)
 
     def test_to_dict(self):
         """This tests the to_dict method"""

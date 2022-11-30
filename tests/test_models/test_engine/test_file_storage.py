@@ -25,11 +25,14 @@ class TestStorage(unittest.TestCase):
         pass
     def test_save(self):
         """Test the function save"""
-        self.storage.save()
+        storage = FileStorage()
+        storage.save()
         pass
     def test_reload(self):
         """Test the function reload"""
-        self.assertIs(self.storage.reload(), None)
+        storage = FileStorage()
+        rel = storage.reload()
+        self.assertIs(rel, None)
         pass
 
 if __name__ == '__main__':
